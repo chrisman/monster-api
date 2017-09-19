@@ -1,0 +1,26 @@
+{
+  "name": "monster-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon src/index.js",
+    "test": "tape test/**/*.js | faucet"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.0",
+    "cors": "^2.8.4",
+    "dotenv": "^4.0.0",
+    "express": "^4.15.4",
+    "knex": "^0.13.0",
+    "pg": "^7.3.0"
+  },
+  "devDependencies": {
+    "faucet": "0.0.1",
+    "nodemon": "^1.12.1",
+    "tape": "^4.8.0"
+  }
+}
