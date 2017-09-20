@@ -1,8 +1,11 @@
 const http = require('http');
-const App = require('./App');
+const  app = require('./App');
 
-const server = http.createServer(App.default);
+// Set up server
+const server = http.createServer(app);
+
+// Start server
 server.listen(3000);
-server.on('listening', function(){
-  console.log('Listening on port 3000')
+server.on('listening', function() {
+  console.log('Listening on port 3000');
 });

@@ -19,16 +19,16 @@ class MonsterRouter {
     if (monster) {
       res.json({ message: 'Success', monster });
     } else {
-      res.json({ message: 'No monster found with the given id.' });
+      res.status(404).json({ message: 'No monster found with the given id.' });
     }
   }
 
   async add(req, res, next) {
     if (req.body.name && typeof req.body.name === 'string') {
       const monster = await monsterQueries.add(req.body);
-      res.json({ message: 'Success', monster });
+      res.status(201).json({ message: 'Success', monster });
     } else {
-      res.json({ message: 'Name is required to add a monster' });
+      res.status(409).json({ message: 'Name is required to add a monster' });
     }
   }
 
@@ -41,10 +41,10 @@ class MonsterRouter {
   async remove(req, res, next) {
     const id = parseInt(req.params.id);
     try {
-      await monsterQueries.remove(id) ;
+      await monsterQueries.remove(id);
       res.json({ message: 'Success'});
     } catch(error) {
-      res.json({ message: 'No monster found with the given id.', error });
+      res.status(404).json({ message: 'No monster found with the given id.', error });
     }
   }
 
@@ -58,7 +58,4 @@ class MonsterRouter {
 
 }
 
-const monsterRoutes = new MonsterRouter();
-monsterRoutes.init();
-
-module.exports = monsterRoutes.router
+module.exports = new MonsterRouter().router;
