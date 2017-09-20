@@ -1,6 +1,7 @@
-const express = require('express');
-const cors = require('cors');
 const bodyparser = require('body-parser');
+const cors = require('cors');
+const express = require('express');
+
 const MonsterRouter = require('./routes/MonsterRouter');
 
 class App {
@@ -29,4 +30,4 @@ class App {
   }
 }
 
-exports.default = new App().app;
+module.exports = new App().app;
