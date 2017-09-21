@@ -4,21 +4,20 @@ const express = require('express');
 
 const MonsterRouter = require('./routes/MonsterRouter');
 
-class App {
-
-  constructor() {
+const createApp = {
+  init() {
     this.app = express();
-    this._middleware();
-    this._routes();
-  }
+    this.middleware();
+    this.routes();
 
-  _middleware() {
+    return this.app;
+  },
+  middleware() {
     this.app.use(cors());
     this.app.use(bodyparser.json());
     this.app.use(bodyparser.urlencoded({ extended: false }));
-  }
-
-  _routes() {
+  },
+  routes() {
     let router = express.Router();
     router.get('/', (req, res, next) => {
       res.json({
@@ -28,6 +27,6 @@ class App {
     this.app.use('/', router);
     this.app.use('/api/v1/monsters', MonsterRouter);
   }
-}
+};
 
-module.exports = new App().app;
+module.exports = createApp.init();
